@@ -1,6 +1,8 @@
 # Flask-TOML
+[![Circle CI](https://circleci.com/gh/nZac/flask-tomlconfig.svg?style=svg)](https://circleci.com/gh/nZac/flask-tomlconfig)
 
 Configure Flask applications with a TOML file.
+
 
 ## Version
 1.1.0
