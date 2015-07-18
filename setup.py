@@ -9,7 +9,7 @@ from setuptools import setup
 
 setup(
     name='Flask-TOMLConfig',
-    version='1.0.0',
+    version='1.1.0',
     url='http://github.com/nzac/flask-tomlconfig',
     license='BSD',
     author='Nick Zaccardi',
