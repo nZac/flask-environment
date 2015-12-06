@@ -12,12 +12,14 @@ Flask 0.10 support loading configuration from an environment variable and a
 Python module.  This plugin extends that to include TOML and a backport of the
 JSON implementation expected in 1.0 (or 0.11, whatever the release after 0.10).
 
+
+Supports Python 2.7, 3.4, 3.5.
+
 ## Installation
 
 ```sh
 $ pip install flask-config
 ```
-
 
 ```sh
 # With TOML support
