@@ -1,9 +1,9 @@
 """
-Flask-Config
+Flask-Environment
 -------------
 
-Flask-Confg allows configuration of a Flask project with various serialization
-formats.
+Flask-Environment allows configuration of a Flask project with various
+serialization formats.
 """
 
 import sys
@@ -13,16 +13,16 @@ from setuptools import setup
 VERSION = '0.2.0'
 
 setup(
-    name='Flask-Config',
+    name='Flask-Environment',
     version=VERSION,
-    url='http://github.com/teamskosh/flask-config',
-    download_url='https://github.com/teamskosh/flask-config/tarball/' + VERSION,
+    url='http://github.com/teamskosh/flask-environment',
+    download_url='https://github.com/teamskosh/flask-environment/tarball/' + VERSION,
     license='MIT',
     author='Nick Zaccardi',
     author_email='nicholas.zaccardi@gmail.com',
     description='Configure a Flask application with various file formats.',
     long_description=__doc__,
-    packages=['flask_config'],
+    packages=['flask_environment'],
     extras_require={
         'TOML': ['pytoml'],
     },

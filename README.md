@@ -1,5 +1,5 @@
-# Flask-Config
-[![Circle CI](https://circleci.com/gh/nZac/flask-config.svg?style=svg)](https://circleci.com/gh/nZac/flask-config)
+# Flask-Environment
+[![Circle CI](https://circleci.com/gh/nZac/flask-environment.svg?style=svg)](https://circleci.com/gh/nZac/flask-environment)
 
 Configure a Flask applications with various configuration formats.
 
@@ -18,29 +18,29 @@ Supports Python 2.7, 3.4, 3.5.
 ## Installation
 
 ```sh
-$ pip install flask-config
+$ pip install flask-environment
 ```
 
 ```sh
 # With TOML support
-$ pip install flask-config[TOML]
+$ pip install flask-environment[TOML]
 ```
 
 
 ## Usage Flask<=0.10
 
 Flask 0.10 doesn't allow overriding the configuration class whereas 1.0 will.
-Flask-Config is build with 1.0 in mind and expects <=0.10 to override
+Flask-Environment is build with 1.0 in mind and expects <=0.10 to override
 `make_config` on the application object.
 
 ```python
 import flask
-from flask_config import Config
+from flask_environment import Config
 
 class MyApp(flask.Flask):
 
     # Backport the logic of Flask.make_config replacing the default config
-    # class with Flask-Config's
+    # class with Flask-Environments
     def make_config(self, instance_relative=False):
         root_path = self.root_path
 
@@ -56,7 +56,7 @@ app.config.from_toml('config.toml')
 
 ```python
 import flask
-from flask_config import Config
+from flask_environment import Config
 
 class MyApp(flask.Flask):
     config_class = Config
@@ -68,13 +68,13 @@ app.config.from_toml('config.toml')
 
 ## Environments
 
-Flask-Config adds the idea of environments to a configuration file. For
+Flask-Environment adds the idea of environments to a configuration file. For
 different situations you might change the configuration even when the
 application is deployed to the same machine, this is most helpful with testing.
 You probably want to use a different database for testing than what you do for
 regular development.
 
-Flask-Config solves this problem with the concept of environments. Within a
+Flask-Environment solves this problem with the concept of environments. Within a
 configuration file, create a new dict called `environments` with the keys being
 the name of the different environments you intend to declare.
 

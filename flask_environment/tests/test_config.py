@@ -4,7 +4,7 @@ import flask
 import pytest
 import pytoml as toml
 
-from flask_config import Config
+from flask_environment import Config
 from . import FlaskApp
 
 
