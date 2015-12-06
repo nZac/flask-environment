@@ -5,4 +5,4 @@ dependencies:
 
 test:
   post:
-    - mv .pytests.xml $CIRCLE_TEST_REPORTS/.pytests.xml
+    - mv reports/ $CIRCLE_TEST_REPORTS/
