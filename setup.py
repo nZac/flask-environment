@@ -16,7 +16,7 @@ setup(
     name='Flask-Environment',
     version=VERSION,
     url='http://github.com/teamskosh/flask-environment',
-    download_url='https://github.com/teamskosh/flask-environment/tarball/' + VERSION,
+    download_url='https://github.com/nZac/flask-environment/tarball/' + VERSION,
     license='MIT',
     author='Nick Zaccardi',
     author_email='nicholas.zaccardi@gmail.com',
