@@ -8,32 +8,9 @@ formats.
 
 import sys
 from setuptools import setup
-from setuptools.command.test import test as TestCommand
 
 
 VERSION = '0.1.0'
-
-
-class PyTest(TestCommand):
-    user_options = [('pytest-args=', 'a', "Arguments to pass to py.test")]
-
-    def initialize_options(self):
-        TestCommand.initialize_options(self)
-        self.pytest_args = []
-
-    def finalize_options(self):
-        TestCommand.finalize_options(self)
-        self.test_args = []
-        self.test_suite = True
-
-    def run_tests(self):
-        #import here, cause outside the eggs aren't loaded
-        import pytest
-        errno = pytest.main(self.pytest_args)
-        sys.exit(errno)
-
-testing_requirements = ['pytoml', 'pytest']
-
 
 setup(
     name='Flask-Config',
@@ -46,11 +23,9 @@ setup(
     description='Configure a Flask application with various file formats.',
     long_description=__doc__,
     packages=['flask_config'],
-    tests_require=testing_requirements,
     extras_require={
         'TOML': ['pytoml'],
     },
-    cmdclass={'test': PyTest},
     zip_safe=False,
     platforms='any',
     install_requires=[

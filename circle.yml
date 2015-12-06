@@ -1,6 +1,0 @@
-dependencies:
-  override:
-    - echo "Nothing to do because setup.py does it for us"
-test:
-  override:
-    - python setup.py test
