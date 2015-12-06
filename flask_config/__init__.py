@@ -22,7 +22,7 @@ class Config(FlaskConfig):
         :return: a diction
         """
         # Get the top level keys
-        defaults = {k: v for k, v in config.iteritems() if k != 'environments'}
+        defaults = {k: v for k, v in iteritems(config) if k != 'environments'}
 
         try:
             defaults.update(config['environments'][env])
