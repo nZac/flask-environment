@@ -1,37 +1,111 @@
-# Flask-TOML
+# Flask-Config
 [![Circle CI](https://circleci.com/gh/nZac/flask-config.svg?style=svg)](https://circleci.com/gh/nZac/flask-config)
 
-Configure Flask applications with a TOML file.
-
+Configure a Flask applications with various configuration formats.
 
 ## Version
-1.1.0
+0.1.0
 
-## Description:
-Add a file called config.toml to you root project directory or pass a path to the configuration
-object to use a custom location.  All paths are relative to the Flask `app_root`.
+## Description
 
-## Usage
+Flask 0.10 support loading configuration from an environment variable and a
+Python module.  This plugin extends that to include TOML and a backport of the
+JSON implementation expected in 1.0 (or 0.11, whatever the release after 0.10).
 
-Some example uses.
+## Installation
 
-### config.toml in root of project
+```sh
+$ pip install flask-config
+```
+
+
+```sh
+# With TOML support
+$ pip install flask-config[TOML]
+```
+
+
+## Usage Flask<=0.10
+
+Flask 0.10 doesn't allow overriding the configuration class whereas 1.0 will.
+Flask-Config is build with 1.0 in mind and expects <=0.10 to override
+`make_config` on the application object.
 
 ```python
 import flask
-from flask.ext.tomlconfig import ConfigEnvironment
+from flask_config import Config
 
-app = flask.Flask(__name__)
-ConfigEnvironment(app)
+class MyApp(flask.Flask):
+
+    # Backport the logic of Flask.make_config replacing the default config
+    # class with Flask-Config's
+    def make_config(self, instance_relative=False):
+        root_path = self.root_path
+
+        if instance_relative:
+            root_path = self.instance_path
+        return Config(root_path, self.default_config)
+
+app = MyApp(__name__)
+app.config.from_toml('config.toml')
 ```
 
-### config.toml up a directory
+## Usage Flask>0.10 (unreleased as of writing 12/5/2015)
 
 ```python
-# app.py
 import flask
-from flask.ext.tomlconfig import ConfigEnvironment
+from flask_config import Config
 
-app = flask.Flask(__name__)
-ConfigEnvironment(app, path='../config.toml')
+class MyApp(flask.Flask):
+    config_class = Config
+
+app = MyApp(__name__)
+app.config.from_toml('config.toml')
 ```
+
+
+## Environments
+
+Flask-Config adds the idea of environments to a configuration file. For
+different situations you might change the configuration even when the
+application is deployed to the same machine, this is most helpful with testing.
+You probably want to use a different database for testing than what you do for
+regular development.
+
+Flask-Config solves this problem with the concept of environments. Within a
+configuration file, create a new dict called `environments` with the keys being
+the name of the different environments you intend to declare.
+
+Activate an environment like this:
+
+```python
+app.config.from_toml('config.toml', environment='testing')
+```
+
+This will load all the default settings (everything not in an environment)
+and then the specified environment. Here is a sample TOML file demonstrating the
+idea.
+
+```toml
+SUPER_COOL_FEATURE = true
+DEBUG = false
+
+[environments.dev]
+DEBUG = true
+
+[environments.testing]
+TESTING = true
+```
+
+If we loaded the `dev` environment, the application debug flag would be set to
+`True` and `SUPER_COOL_FEATURE` would be available.
+
+While you could use this to provision different logical environments in the same
+file (beta, production) there really isn't a point. Environments are for
+changing configurations within the same logical environments. Maybe you have a
+production environment that spawns two apps that need two diverging
+configurations, environments fill that need.
+
+## Licence
+
+MIT
