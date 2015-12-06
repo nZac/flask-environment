@@ -4,14 +4,14 @@ Flask-Config
 
 Flask-Confg allows configuration of a Flask project with various serialization
 formats.
-
 """
 
 import sys
 from setuptools import setup
 from setuptools.command.test import test as TestCommand
 
-from flask_config import __VERSION__ as VERSION
+
+VERSION = '0.1.0'
 
 
 class PyTest(TestCommand):
@@ -39,7 +39,8 @@ setup(
     name='Flask-Config',
     version=VERSION,
     url='http://github.com/teamskosh/flask-config',
-    license='BSD',
+    download_url='https://github.com/teamskosh/flask-config/tarball/' + VERSION,
+    license='MIT',
     author='Nick Zaccardi',
     author_email='nicholas.zaccardi@gmail.com',
     description='Configure a Flask application with various file formats.',

@@ -1,5 +1,5 @@
+dependencies:
+  override: echo "Nothing to do because setup.py does it for us"
 test:
-  pre:
-    - pip install pytest
   override:
     - python setup.py test

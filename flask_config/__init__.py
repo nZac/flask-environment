@@ -7,9 +7,6 @@ from flask._compat import iteritems
 from flask import json
 
 
-__VERSION__ = '0.1.0'
-
-
 class ConfigError(Exception):
     pass
 
