@@ -1,0 +1,9 @@
+TEST_KEY = "foo"
+SECRET_KEY = "devkey"
+ignored = "yes"
+
+[environments.dev]
+DEBUG = true
+
+[environments.testing]
+TESTING = true

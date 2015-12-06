@@ -2,4 +2,4 @@ test:
   pre:
     - pip install pytest
   override:
-    - py.test flask_tomlconfig
+    - python setup.py test

@@ -1,0 +1,8 @@
+TEST_KEY = "foo"
+SECRET_KEY = "devkey"
+ignored = "yes"
+
+[DATABASE]
+HOST = 'something'
+PORT = 2345
+ignored = 'no'
