@@ -1,5 +1,5 @@
 import flask
-from flask_config import Config
+from flask_environment import Config
 
 
 class FlaskApp(flask.Flask):
