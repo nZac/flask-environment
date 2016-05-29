@@ -5,7 +5,6 @@ import pytest
 from . import FlaskApp
 
 
-
 def common_object_test(app):
     assert app.secret_key == 'devkey'
     assert app.config['TEST_KEY'] == 'foo'
