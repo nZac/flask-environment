@@ -13,13 +13,26 @@ class ConfigError(Exception):
 
 class Config(FlaskConfig):
 
+    def __init__(self, root_path=None, defaults=None, app=None):
+        dict.__init__(self, defaults or {})
+        self.root_path = root_path
+
+        if app:
+            import pdb; pdb.set_trace()
+            self.init_app(app)
+
+    def init_app(self, app):
+        self.from_mapping(app.config)
+        app.config = self
+        return self
+
     def _get_environment(self, env, config):
         """Return a dictionary containing the top level values updated with
         those from the environment.
 
         :param env: The name of the environment as a string
-        :param config: the
-        :return: a diction
+        :param config: the configuration mapping
+        :return: a dictionary
         """
         # Get the top level keys
         defaults = {k: v for k, v in iteritems(config) if k != 'environments'}
@@ -48,7 +61,12 @@ class Config(FlaskConfig):
             if silent:
                 return False
             e.strerror = 'Unable to load pytoml, is the packaged installed?'
-        filename = os.path.join(self.root_path, filename)
+            raise
+
+        # Prepeend the root path is we don't have an absolute path
+        filename = (os.path.join(self.root_path, filename)
+                    if filename.startswith(os.sep)
+                    else filename)
 
         try:
             with open(filename) as toml_file:

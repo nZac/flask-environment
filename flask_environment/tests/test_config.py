@@ -53,7 +53,7 @@ class FileTypeTest(object):
 class TestConfig(object):
 
     def test_create_of_config_object(self):
-        app = FlaskApp('name')
+        app = FlaskApp(__name__.split('.')[0])
         assert isinstance(app.config, Config)
 
     def test_get_environment_returns_part_of_dict(self):
