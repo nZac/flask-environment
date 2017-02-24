@@ -10,13 +10,11 @@ import sys
 from setuptools import setup
 
 
-VERSION = '0.2.0'
-
 setup(
     name='Flask-Environment',
-    version=VERSION,
+    setup_requires=['setuptools_scm'],
+    use_scm_version=True,
     url='http://github.com/teamskosh/flask-environment',
-    download_url='https://github.com/nZac/flask-environment/tarball/' + VERSION,
     license='MIT',
     author='Nick Zaccardi',
     author_email='nicholas.zaccardi@gmail.com',
@@ -24,12 +22,13 @@ setup(
     long_description=__doc__,
     packages=['flask_environment'],
     extras_require={
-        'TOML': ['pytoml'],
+        'toml': ['pytoml==0.1.11'],
+        'dev': ['tox', 'pytest', 'pytoml']
     },
     zip_safe=False,
     platforms='any',
     install_requires=[
-        'flask'
+        'flask>=0.11'
     ],
     classifiers=[
         'Development Status :: 4 - Beta',

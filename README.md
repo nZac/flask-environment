@@ -8,10 +8,9 @@ Configure a Flask applications with various configuration formats.
 
 ## Description
 
-Flask 0.10 support loading configuration from an environment variable and a
-Python module.  This plugin extends that to include TOML and a backport of the
-JSON implementation expected in 1.0 (or 0.11, whatever the release after 0.10).
-
+Configure Flask applications with other file formats like TOML. The killer
+feature of Flask-Environment is the ability to adjust settings without multiple
+configuration files.
 
 Supports Python 2.7, 3.4, 3.5.
 
@@ -27,32 +26,7 @@ $ pip install flask-environment[TOML]
 ```
 
 
-## Usage Flask<=0.10
-
-Flask 0.10 doesn't allow overriding the configuration class whereas 1.0 will.
-Flask-Environment is build with 1.0 in mind and expects <=0.10 to override
-`make_config` on the application object.
-
-```python
-import flask
-from flask_environment import Config
-
-class MyApp(flask.Flask):
-
-    # Backport the logic of Flask.make_config replacing the default config
-    # class with Flask-Environments
-    def make_config(self, instance_relative=False):
-        root_path = self.root_path
-
-        if instance_relative:
-            root_path = self.instance_path
-        return Config(root_path, self.default_config)
-
-app = MyApp(__name__)
-app.config.from_toml('config.toml')
-```
-
-## Usage Flask>0.10 (unreleased as of writing 12/5/2015)
+## Usage Flask>0.10
 
 ```python
 import flask
