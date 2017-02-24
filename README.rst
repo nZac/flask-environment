@@ -1,12 +1,18 @@
-# Flask-Environment
-[![Circle CI](https://circleci.com/gh/nZac/flask-environment.svg?style=svg)](https://circleci.com/gh/nZac/flask-environment)
+Flask-Environment
+#################
+
+.. image:: https://circleci.com/gh/nZac/flask-environment/tree/master.svg?style=svg
+    :target: https://circleci.com/gh/nZac/flask-environment/tree/master
 
 Configure a Flask applications with various configuration formats.
 
-## Version
+Version
+-------
+
 0.1.0
 
-## Description
+Description
+-----------
 
 Configure Flask applications with other file formats like TOML. The killer
 feature of Flask-Environment is the ability to adjust settings without multiple
@@ -14,33 +20,36 @@ configuration files.
 
 Supports Python 2.7, 3.4, 3.5.
 
-## Installation
+Installation
+------------
 
-```sh
-$ pip install flask-environment
-```
+.. code::
 
-```sh
-# With TOML support
-$ pip install flask-environment[TOML]
-```
+  $ pip install flask-environment
 
 
-## Usage Flask>0.10
+.. code::
 
-```python
-import flask
-from flask_environment import Config
-
-class MyApp(flask.Flask):
-    config_class = Config
-
-app = MyApp(__name__)
-app.config.from_toml('config.toml')
-```
+  $ pip install flask-environment[TOML]
 
 
-## Environments
+Usage Flask>0.10
+----------------
+
+.. code::
+
+  import flask
+  from flask_environment import Config
+
+  class MyApp(flask.Flask):
+      config_class = Config
+
+  app = MyApp(__name__)
+  app.config.from_toml('config.toml')
+
+
+Environments
+------------
 
 Flask-Environment adds the idea of environments to a configuration file. For
 different situations you might change the configuration even when the
@@ -49,32 +58,33 @@ You probably want to use a different database for testing than what you do for
 regular development.
 
 Flask-Environment solves this problem with the concept of environments. Within a
-configuration file, create a new dict called `environments` with the keys being
+configuration file, create a new dict called ``environments`` with the keys being
 the name of the different environments you intend to declare.
 
 Activate an environment like this:
 
-```python
-app.config.from_toml('config.toml', environment='testing')
-```
+
+.. code::
+
+  app.config.from_toml('config.toml', environment='testing')
 
 This will load all the default settings (everything not in an environment)
 and then the specified environment. Here is a sample TOML file demonstrating the
 idea.
 
-```toml
-SUPER_COOL_FEATURE = true
-DEBUG = false
+.. code::
 
-[environments.dev]
-DEBUG = true
+  SUPER_COOL_FEATURE = true
+  DEBUG = false
 
-[environments.testing]
-TESTING = true
-```
+  [environments.dev]
+  DEBUG = true
 
-If we loaded the `dev` environment, the application debug flag would be set to
-`True` and `SUPER_COOL_FEATURE` would be available.
+  [environments.testing]
+  TESTING = true
+
+If we loaded the ``dev``` environment, the application debug flag would be set to
+``True`` and ``SUPER_COOL_FEATURE`` would be available.
 
 While you could use this to provision different logical environments in the same
 file (beta, production) there really isn't a point. Environments are for
@@ -82,6 +92,7 @@ changing configurations within the same logical environments. Maybe you have a
 production environment that spawns two apps that need two diverging
 configurations, environments fill that need.
 
-## Licence
+Licence
+-------
 
 MIT

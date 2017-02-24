@@ -1,6 +1,6 @@
 """
 Flask-Environment
--------------
+------------------
 
 Flask-Environment allows configuration of a Flask project with various
 serialization formats.
@@ -25,7 +25,7 @@ setup(
         'toml': ['pytoml==0.1.11'],
         'dev': ['tox', 'pytest', 'pytoml']
     },
-    zip_safe=False,
+    zip_safe=True,
     platforms='any',
     install_requires=[
         'flask>=0.11'
