@@ -7,8 +7,12 @@ serialization formats.
 """
 
 import sys
+import os
 from setuptools import setup
 
+
+with open('CHANGELOG.rst') as f:
+    changelog = f.read()
 
 setup(
     name='Flask-Environment',
@@ -19,7 +23,7 @@ setup(
     author='Nick Zaccardi',
     author_email='nicholas.zaccardi@gmail.com',
     description='Configure a Flask application with various file formats.',
-    long_description=__doc__,
+    long_description=__doc__ + '\n\n' + changelog,
     packages=['flask_environment'],
     extras_require={
         'toml': ['pytoml==0.1.11'],
